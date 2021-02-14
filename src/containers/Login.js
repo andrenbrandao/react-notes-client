@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import LoaderButton from "../components/LoaderButton";
 import "./Login.css";
@@ -10,7 +9,6 @@ import { useFormFields } from "../libs/hooksLib";
 import { onError } from "../libs/errorLib";
 
 export default function Login() {
-  const history = useHistory();
   const { setUserAuthenticated } = useAppContext();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +29,6 @@ export default function Login() {
     try {
       await Auth.signIn(fields.email, fields.password);
       setUserAuthenticated(true);
-      history.push("/");
     } catch (e) {
       onError(e);
       setIsLoading(false);
