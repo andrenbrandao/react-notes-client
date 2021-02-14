@@ -25,7 +25,7 @@ function App() {
       await Auth.currentSession();
       setUserAuthenticated(true);
     }
-    catch(e) {
+    catch (e) {
       if (e !== 'No current user') {
         onError(e);
       }
@@ -49,23 +49,28 @@ function App() {
           <LinkContainer to="/">
             <Navbar.Brand className="font-weight-bold text-muted">
               Scratch
-            </Navbar.Brand>
+          </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <Nav activeKey={window.location.pathname}>
               {isAuthenticated ? (
-                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
-              ) : (
                 <>
-                  <LinkContainer to="/signup">
-                    <Nav.Link>Signup</Nav.Link>
+                  <LinkContainer to="/settings">
+                    <Nav.Link>Settings</Nav.Link>
                   </LinkContainer>
-                  <LinkContainer to="/login">
-                    <Nav.Link>Login</Nav.Link>
-                  </LinkContainer>
+                  <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
                 </>
-              )}
+              ) : (
+                  <>
+                    <LinkContainer to="/signup">
+                      <Nav.Link>Signup</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to="/login">
+                      <Nav.Link>Login</Nav.Link>
+                    </LinkContainer>
+                  </>
+                )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
